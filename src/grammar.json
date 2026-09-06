@@ -3,22 +3,191 @@
   "name": "penny",
   "word": "identifier",
   "rules": {
-    "keyword": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
+    },
+    "_statement": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "await"
+          "type": "SYMBOL",
+          "name": "_statement_path"
         },
         {
-          "type": "STRING",
-          "value": "pass"
+          "type": "SYMBOL",
+          "name": "statement_label"
         },
         {
-          "type": "STRING",
-          "value": "return"
+          "type": "SYMBOL",
+          "name": "statement_print"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "statement_return"
         }
       ]
+    },
+    "_statement_path": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "statement_label": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "label"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "statement_print": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "print"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "statement_return": {
+      "type": "PREC_LEFT",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "return"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "keyword": {
+      "type": "PREC",
+      "value": 100,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "await"
+          },
+          {
+            "type": "STRING",
+            "value": "call"
+          },
+          {
+            "type": "STRING",
+            "value": "elif"
+          },
+          {
+            "type": "STRING",
+            "value": "else"
+          },
+          {
+            "type": "STRING",
+            "value": "exit"
+          },
+          {
+            "type": "STRING",
+            "value": "if"
+          },
+          {
+            "type": "STRING",
+            "value": "init"
+          },
+          {
+            "type": "STRING",
+            "value": "jump"
+          },
+          {
+            "type": "STRING",
+            "value": "label"
+          },
+          {
+            "type": "STRING",
+            "value": "let"
+          },
+          {
+            "type": "STRING",
+            "value": "match"
+          },
+          {
+            "type": "STRING",
+            "value": "menu"
+          },
+          {
+            "type": "STRING",
+            "value": "new"
+          },
+          {
+            "type": "STRING",
+            "value": "object"
+          },
+          {
+            "type": "STRING",
+            "value": "pass"
+          },
+          {
+            "type": "STRING",
+            "value": "print"
+          },
+          {
+            "type": "STRING",
+            "value": "return"
+          },
+          {
+            "type": "STRING",
+            "value": "suspend"
+          },
+          {
+            "type": "STRING",
+            "value": "var"
+          }
+        ]
+      }
     },
     "identifier": {
       "type": "PATTERN",
@@ -26,40 +195,34 @@
       "flags": "i"
     },
     "number": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "\\d+"
-          },
-          {
-            "type": "PATTERN",
-            "value": "\\d+\\.\\d+"
-          },
-          {
-            "type": "PATTERN",
-            "value": "\\.\\d+"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+\\.\\d+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\.\\d+"
+        }
+      ]
     },
     "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "#"
-          },
-          {
-            "type": "PATTERN",
-            "value": ".*"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
     }
   },
   "extras": [
