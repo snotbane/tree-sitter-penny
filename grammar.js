@@ -12,16 +12,15 @@ export default grammar({
 
   extras: ($) => [/\s/, $.comment],
 
-  // word: ($) => $.identifier,
+  word: ($) => $.identifier,
 
   rules: {
-    source_file: ($) => repeat($.unknown),
-    // identifier: ($) => /[a-z_][a-z_0-9]*/i,
+    keyword: ($) => choice("await", "pass", "return"),
+
+    identifier: ($) => /[a-z_][a-z_0-9]*/i,
 
     number: ($) => token(choice(/\d+/, /\d+\.\d+/, /\.\d+/)),
 
     comment: ($) => token(seq("#", /.*/)),
-
-    unknown: ($) => /.+/,
   },
 });

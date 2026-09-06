@@ -1,19 +1,13 @@
 [
   {
-    "type": "source_file",
+    "type": "keyword",
     "named": true,
     "root": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "unknown",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
+  },
+  {
+    "type": "await",
+    "named": false
   },
   {
     "type": "comment",
@@ -21,7 +15,11 @@
     "extra": true
   },
   {
-    "type": "unknown",
-    "named": true
+    "type": "pass",
+    "named": false
+  },
+  {
+    "type": "return",
+    "named": false
   }
 ]
