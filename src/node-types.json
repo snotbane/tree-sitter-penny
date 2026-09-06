@@ -4,5 +4,10 @@
     "named": true,
     "root": true,
     "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
   }
 ]

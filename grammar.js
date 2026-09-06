@@ -10,7 +10,7 @@
 export default grammar({
   name: "penny",
 
-  // extras: ($) => [/\s/, $.comment],
+  extras: ($) => [/\s/, $.comment],
 
   // word: ($) => $.identifier,
 
@@ -19,6 +19,6 @@ export default grammar({
 
     number: ($) => token(choice(/\d+/, /\d+\.\d+/, /\.\d+/)),
 
-    // comment: ($) => token(seq("#", /.*/)),
+    comment: ($) => token(seq("#", /.*/)),
   },
 });
