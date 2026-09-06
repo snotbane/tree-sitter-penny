@@ -10,11 +10,15 @@
 export default grammar({
   name: "penny",
 
+  // extras: ($) => [/\s/, $.comment],
+
   // word: ($) => $.identifier,
 
   rules: {
     // identifier: ($) => /[a-z_][a-z_0-9]*/i,
 
-    number: ($) => /\d+/,
+    number: ($) => token(choice(/\d+/, /\d+\.\d+/, /\.\d+/)),
+
+    // comment: ($) => token(seq("#", /.*/)),
   },
 });
