@@ -1,0 +1,14 @@
+==================
+Print Zero
+==================
+
+print 0
+
+---
+(source_file
+	(statement_print
+		(expression
+			(number)
+		)
+	)
+)

@@ -1,0 +1,39 @@
+==================
+Zero Integer
+==================
+
+return 0
+
+---
+(source_file
+	(statement_return
+		(expression
+			(number)))
+	)
+
+==================
+Zero Float
+==================
+
+return 0.0
+
+---
+(source_file
+	(statement_return
+		(expression
+			(number)))
+	)
+
+
+==================
+Half Float
+==================
+
+return .5
+
+---
+(source_file
+	(statement_return
+		(expression
+			(number)))
+	)

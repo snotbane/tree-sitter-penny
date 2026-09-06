@@ -1,0 +1,42 @@
+
+==================
+Line comment with no separation whitespace
+==================
+
+#Comment
+
+---
+(source_file
+	(comment))
+
+
+==================
+Line comment with space separation
+==================
+
+# Comment
+
+---
+(source_file
+	(comment))
+
+==================
+Line comment with tab separation
+==================
+
+#	Comment
+
+---
+(source_file
+	(comment))
+
+
+==================
+Line comment with double hashtag
+==================
+
+## Comment
+
+---
+(source_file
+	(comment))

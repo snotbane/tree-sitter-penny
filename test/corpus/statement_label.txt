@@ -1,0 +1,12 @@
+==================
+Label Statement
+==================
+
+label start
+
+---
+(source_file
+	(statement_label
+		(identifier)
+	)
+)

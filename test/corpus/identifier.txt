@@ -1,0 +1,20 @@
+==================
+Single-character identifier
+==================
+
+x
+
+---
+(source_file
+	(identifier))
+
+
+==================
+Multi-character identifier
+==================
+
+avalon009
+
+---
+(source_file
+	(identifier))
