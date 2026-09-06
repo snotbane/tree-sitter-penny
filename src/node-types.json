@@ -1,13 +1,27 @@
 [
   {
-    "type": "number",
+    "type": "source_file",
     "named": true,
     "root": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "unknown",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "unknown",
+    "named": true
   }
 ]
