@@ -13,8 +13,8 @@ export default grammar({
   // word: ($) => $.identifier,
 
   rules: {
-    identifier: ($) => /[a-z_][a-z_0-9]+/i,
+    // identifier: ($) => /[a-z_][a-z_0-9]*/i,
 
-    number: ($) => /\d+(\.\d*)?|\.\d+/,
+    number: ($) => /\d+/,
   },
 });

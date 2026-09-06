@@ -2,14 +2,9 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "penny",
   "rules": {
-    "identifier": {
-      "type": "PATTERN",
-      "value": "[a-z_][a-z_0-9]+",
-      "flags": "i"
-    },
     "number": {
       "type": "PATTERN",
-      "value": "\\d+(\\.\\d*)?|\\.\\d+"
+      "value": "\\d+"
     }
   },
   "extras": [

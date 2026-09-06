@@ -20,20 +20,20 @@
 #define SUPERTYPE_COUNT 0
 
 enum ts_symbol_identifiers {
-  aux_sym_identifier_token1 = 1,
-  sym_identifier = 2,
+  aux_sym_number_token1 = 1,
+  sym_number = 2,
 };
 
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
-  [aux_sym_identifier_token1] = "identifier_token1",
-  [sym_identifier] = "identifier",
+  [aux_sym_number_token1] = "number_token1",
+  [sym_number] = "number",
 };
 
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [aux_sym_identifier_token1] = aux_sym_identifier_token1,
-  [sym_identifier] = sym_identifier,
+  [aux_sym_number_token1] = aux_sym_number_token1,
+  [sym_number] = sym_number,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -41,11 +41,11 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [aux_sym_identifier_token1] = {
+  [aux_sym_number_token1] = {
     .visible = false,
     .named = false,
   },
-  [sym_identifier] = {
+  [sym_number] = {
     .visible = true,
     .named = true,
   },
@@ -71,28 +71,17 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   eof = lexer->eof(lexer);
   switch (state) {
     case 0:
-      if (eof) ADVANCE(2);
+      if (eof) ADVANCE(1);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(0);
-      if (('A' <= lookahead && lookahead <= 'Z') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(1);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(2);
       END_STATE();
     case 1:
-      if (('0' <= lookahead && lookahead <= '9') ||
-          ('A' <= lookahead && lookahead <= 'Z') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(3);
-      END_STATE();
-    case 2:
       ACCEPT_TOKEN(ts_builtin_sym_end);
       END_STATE();
-    case 3:
-      ACCEPT_TOKEN(aux_sym_identifier_token1);
-      if (('0' <= lookahead && lookahead <= '9') ||
-          ('A' <= lookahead && lookahead <= 'Z') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(3);
+    case 2:
+      ACCEPT_TOKEN(aux_sym_number_token1);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(2);
       END_STATE();
     default:
       return false;
@@ -109,11 +98,11 @@ static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(0)] = {
     [ts_builtin_sym_end] = ACTIONS(1),
-    [aux_sym_identifier_token1] = ACTIONS(1),
+    [aux_sym_number_token1] = ACTIONS(1),
   },
   [STATE(1)] = {
-    [sym_identifier] = STATE(3),
-    [aux_sym_identifier_token1] = ACTIONS(3),
+    [sym_number] = STATE(3),
+    [aux_sym_number_token1] = ACTIONS(3),
   },
 };
 
@@ -135,7 +124,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [5] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_identifier, 1, 0, 0),
+  [5] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_number, 1, 0, 0),
   [7] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
 };
 

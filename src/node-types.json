@@ -1,6 +1,6 @@
 [
   {
-    "type": "identifier",
+    "type": "number",
     "named": true,
     "root": true,
     "fields": {}
