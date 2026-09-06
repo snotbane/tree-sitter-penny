@@ -7,6 +7,7 @@ return 0
 ---
 (source_file
 	(statement_return
+		(keyword)
 		(expression
 			(number)))
 	)
@@ -20,6 +21,7 @@ return 0.0
 ---
 (source_file
 	(statement_return
+		(keyword)
 		(expression
 			(number)))
 	)
@@ -34,6 +36,7 @@ return .5
 ---
 (source_file
 	(statement_return
+		(keyword)
 		(expression
 			(number)))
 	)

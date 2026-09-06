@@ -62,11 +62,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "keyword",
           "named": true
         }
       ]
@@ -77,11 +81,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "keyword",
           "named": true
         }
       ]
@@ -92,11 +100,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "keyword",
           "named": true
         }
       ]
@@ -111,15 +123,7 @@
     "named": true
   },
   {
-    "type": "label",
-    "named": false
-  },
-  {
-    "type": "print",
-    "named": false
-  },
-  {
-    "type": "return",
-    "named": false
+    "type": "keyword",
+    "named": true
   }
 ]

@@ -7,6 +7,7 @@ print 0
 ---
 (source_file
 	(statement_print
+		(keyword)
 		(expression
 			(number)
 		)

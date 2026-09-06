@@ -7,6 +7,7 @@ label start
 ---
 (source_file
 	(statement_label
+		(keyword)
 		(identifier)
 	)
 )
