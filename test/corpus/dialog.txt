@@ -1,0 +1,44 @@
+==================
+Empty dialog
+==================
+>
+---
+(source_file
+	(statement_dialog
+		(dialog))
+)
+
+==================
+Single-line dialog
+==================
+>	Hello
+---
+(source_file
+	(statement_dialog
+		(dialog))
+)
+
+
+==================
+Multi-line dialog
+==================
+>	Hello
+	Goodbye
+---
+(source_file
+	(statement_dialog
+		(dialog))
+)
+
+
+==================
+Single-line dialog followed by path
+==================
+>	Hello
+rubin
+---
+(source_file
+	(statement_dialog
+		(dialog))
+	(path
+		(identifier)))

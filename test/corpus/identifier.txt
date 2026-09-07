@@ -6,15 +6,51 @@ x
 
 ---
 (source_file
-	(identifier))
+	(path
+		(identifier)))
 
 
 ==================
-Multi-character identifier
+Single-word identifier
 ==================
 
 avalon009
 
 ---
 (source_file
-	(identifier))
+	(path
+		(identifier)))
+
+
+==================
+Multi-identifier absolute path
+==================
+
+character.name
+
+---
+(source_file
+	(path
+		(identifier)
+		(operator)
+		(identifier)
+	)
+)
+
+
+
+==================
+Multi-identifier relative path
+==================
+
+.character.name
+
+---
+(source_file
+	(path
+		(operator)
+		(identifier)
+		(operator)
+		(identifier)
+	)
+)

@@ -14,11 +14,11 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "number",
           "named": true
         },
         {
-          "type": "number",
+          "type": "path",
           "named": true
         }
       ]
@@ -30,6 +30,25 @@
     "fields": {}
   },
   {
+    "type": "path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -39,7 +58,11 @@
       "required": false,
       "types": [
         {
-          "type": "identifier",
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "statement_dialog",
           "named": true
         },
         {
@@ -52,6 +75,21 @@
         },
         {
           "type": "statement_return",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement_dialog",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dialog",
           "named": true
         }
       ]
@@ -119,11 +157,19 @@
     "named": false
   },
   {
+    "type": "dialog",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
     "type": "keyword",
+    "named": true
+  },
+  {
+    "type": "operator",
     "named": true
   }
 ]

@@ -24,6 +24,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "statement_dialog"
+        },
+        {
+          "type": "SYMBOL",
           "name": "statement_label"
         },
         {
@@ -41,7 +45,16 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "path"
+        }
+      ]
+    },
+    "statement_dialog": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dialog"
         }
       ]
     },
@@ -105,7 +118,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "path"
         }
       ]
     },
@@ -116,64 +129,64 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "await"
+            "type": "SYMBOL",
+            "name": "_keyword_await"
           },
           {
-            "type": "STRING",
-            "value": "call"
+            "type": "SYMBOL",
+            "name": "_keyword_call"
           },
           {
-            "type": "STRING",
-            "value": "elif"
+            "type": "SYMBOL",
+            "name": "_keyword_elif"
           },
           {
-            "type": "STRING",
-            "value": "else"
+            "type": "SYMBOL",
+            "name": "_keyword_else"
           },
           {
-            "type": "STRING",
-            "value": "exit"
+            "type": "SYMBOL",
+            "name": "_keyword_exit"
           },
           {
-            "type": "STRING",
-            "value": "if"
+            "type": "SYMBOL",
+            "name": "_keyword_if"
           },
           {
-            "type": "STRING",
-            "value": "init"
+            "type": "SYMBOL",
+            "name": "_keyword_init"
           },
           {
-            "type": "STRING",
-            "value": "jump"
+            "type": "SYMBOL",
+            "name": "_keyword_jump"
           },
           {
             "type": "SYMBOL",
             "name": "_keyword_label"
           },
           {
-            "type": "STRING",
-            "value": "let"
+            "type": "SYMBOL",
+            "name": "_keyword_let"
           },
           {
-            "type": "STRING",
-            "value": "match"
+            "type": "SYMBOL",
+            "name": "_keyword_match"
           },
           {
-            "type": "STRING",
-            "value": "menu"
+            "type": "SYMBOL",
+            "name": "_keyword_menu"
           },
           {
-            "type": "STRING",
-            "value": "new"
+            "type": "SYMBOL",
+            "name": "_keyword_new"
           },
           {
-            "type": "STRING",
-            "value": "object"
+            "type": "SYMBOL",
+            "name": "_keyword_object"
           },
           {
-            "type": "STRING",
-            "value": "pass"
+            "type": "SYMBOL",
+            "name": "_keyword_pass"
           },
           {
             "type": "SYMBOL",
@@ -184,21 +197,147 @@
             "name": "_keyword_return"
           },
           {
-            "type": "STRING",
-            "value": "suspend"
+            "type": "SYMBOL",
+            "name": "_keyword_suspend"
           },
           {
-            "type": "STRING",
-            "value": "var"
+            "type": "SYMBOL",
+            "name": "_keyword_var"
           }
         ]
       }
+    },
+    "_keyword_await": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "await"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_call": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "call"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_elif": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "elif"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_else": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "else"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_exit": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "exit"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_if": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "if"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_init": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "init"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_jump": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "jump"
+      },
+      "named": true,
+      "value": "keyword"
     },
     "_keyword_label": {
       "type": "ALIAS",
       "content": {
         "type": "STRING",
         "value": "label"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_let": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "let"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_match": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "match"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_menu": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "menu"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_new": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "new"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_object": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "object"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_pass": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "pass"
       },
       "named": true,
       "value": "keyword"
@@ -221,10 +360,154 @@
       "named": true,
       "value": "keyword"
     },
+    "_keyword_suspend": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "suspend"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "_keyword_var": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "var"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "path": {
+      "type": "PREC_RIGHT",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_operator_dot"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_operator_dot"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-z_][a-z_0-9]*",
       "flags": "i"
+    },
+    "operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_operator_and"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator_angle_right"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator_dot"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator_or"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator_nand"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator_nor"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[=!<>]=|[+\\-\\*\\/%&|<()]"
+        }
+      ]
+    },
+    "_operator_and": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "&&"
+        },
+        {
+          "type": "STRING",
+          "value": "and"
+        }
+      ]
+    },
+    "_operator_angle_right": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": ">"
+      },
+      "named": true,
+      "value": "operator"
+    },
+    "_operator_dot": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "."
+      },
+      "named": true,
+      "value": "operator"
+    },
+    "_operator_or": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "||"
+        },
+        {
+          "type": "STRING",
+          "value": "or"
+        }
+      ]
+    },
+    "_operator_nand": {
+      "type": "STRING",
+      "value": "nand"
+    },
+    "_operator_nor": {
+      "type": "STRING",
+      "value": "nor"
     },
     "number": {
       "type": "CHOICE",
@@ -269,7 +552,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "dialog"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}
