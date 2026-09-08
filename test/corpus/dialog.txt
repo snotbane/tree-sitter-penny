@@ -190,3 +190,17 @@ rubin
 		(string_rich)
 	)
 )
+
+
+==================
+dialog.txt :: Rich block, variable indents
+==================
+>	Hello
+		and
+	Goodbye
+---
+(source_file
+	(statement_dialog
+		(string_rich)
+	)
+)
