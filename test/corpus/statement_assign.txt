@@ -1,0 +1,144 @@
+
+
+==================
+assign.txt :: Basic (x = 0)
+==================
+x = 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Add equals
+==================
+x += 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Sub equals
+==================
+x -= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Multiply equals
+==================
+x *= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Divide equals
+==================
+x /= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Divide equals
+==================
+x /= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Question equals
+==================
+x ?= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Express equals
+==================
+x &= 0
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)
