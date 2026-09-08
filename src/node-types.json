@@ -62,7 +62,15 @@
           "named": true
         },
         {
+          "type": "statement_assign",
+          "named": true
+        },
+        {
           "type": "statement_dialog",
+          "named": true
+        },
+        {
+          "type": "statement_dialog_close",
           "named": true
         },
         {
@@ -75,6 +83,29 @@
         },
         {
           "type": "statement_return",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement_assign",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assigner",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "path",
           "named": true
         }
       ]
@@ -166,6 +197,10 @@
     "named": false
   },
   {
+    "type": "assigner",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -175,6 +210,10 @@
   },
   {
     "type": "operator",
+    "named": true
+  },
+  {
+    "type": "statement_dialog_close",
     "named": true
   },
   {

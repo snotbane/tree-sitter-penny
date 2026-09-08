@@ -17,22 +17,27 @@ export default grammar({
 	word: ($) => $.identifier,
 
 	rules: {
-		source_file: ($) => repeat(choice($._statement)),
+		source_file: ($) => repeat($._statement),
 
 		_statement: ($) =>
 			choice(
+				$.statement_assign,
 				$._statement_path,
 				$.statement_dialog,
+				$.statement_dialog_close,
 				$.statement_label,
 				$.statement_print,
 				$.statement_return,
 			),
 
-		_statement_path: ($) => choice($.path),
+		statement_assign: ($) => seq($.path, $.assigner, $.expression),
 
-		statement_dialog: ($) => seq($._string),
+		statement_dialog: ($) => $._string,
+
+		statement_dialog_close: ($) => /-+/,
 
 		statement_label: ($) => seq($._keyword_label, $.identifier),
+		_statement_path: ($) => $.path,
 
 		statement_print: ($) => seq($._keyword_print, $.expression),
 
@@ -97,6 +102,8 @@ export default grammar({
 			),
 
 		identifier: ($) => /[a-z_][a-z_0-9]*/i,
+
+		assigner: ($) => /[+\-\*\/?&]?=/,
 
 		operator: ($) =>
 			choice(

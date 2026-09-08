@@ -6,13 +6,8 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_statement"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "_statement"
       }
     },
     "_statement": {
@@ -20,11 +15,19 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "statement_assign"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_statement_path"
         },
         {
           "type": "SYMBOL",
           "name": "statement_dialog"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "statement_dialog_close"
         },
         {
           "type": "SYMBOL",
@@ -40,23 +43,30 @@
         }
       ]
     },
-    "_statement_path": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "path"
-        }
-      ]
-    },
-    "statement_dialog": {
+    "statement_assign": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_string"
+          "name": "path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assigner"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
+    },
+    "statement_dialog": {
+      "type": "SYMBOL",
+      "name": "_string"
+    },
+    "statement_dialog_close": {
+      "type": "PATTERN",
+      "value": "-+"
     },
     "statement_label": {
       "type": "SEQ",
@@ -70,6 +80,10 @@
           "name": "identifier"
         }
       ]
+    },
+    "_statement_path": {
+      "type": "SYMBOL",
+      "name": "path"
     },
     "statement_print": {
       "type": "SEQ",
@@ -423,6 +437,10 @@
       "type": "PATTERN",
       "value": "[a-z_][a-z_0-9]*",
       "flags": "i"
+    },
+    "assigner": {
+      "type": "PATTERN",
+      "value": "[+\\-\\*\\/?&]?="
     },
     "operator": {
       "type": "CHOICE",
