@@ -54,7 +54,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "dialog"
+          "name": "_string"
         }
       ]
     },
@@ -509,6 +509,53 @@
       "type": "STRING",
       "value": "nor"
     },
+    "_string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string_rich"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_raw"
+        }
+      ]
+    },
+    "string_rich": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[>+]"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_string_rich_implicit"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "[`]{3}.*?[`]{3}|[`].*?[`]"
+        }
+      ]
+    },
+    "string_raw": {
+      "type": "PATTERN",
+      "value": "['\"]{3}.*?['\"]{3}|['\"].*?['\"]"
+    },
     "number": {
       "type": "CHOICE",
       "members": [
@@ -547,6 +594,10 @@
     },
     {
       "type": "SYMBOL",
+      "name": "_line_indent"
+    },
+    {
+      "type": "SYMBOL",
       "name": "comment"
     }
   ],
@@ -555,7 +606,11 @@
   "externals": [
     {
       "type": "SYMBOL",
-      "name": "dialog"
+      "name": "_string_rich_implicit"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_line_indent"
     }
   ],
   "inline": [],

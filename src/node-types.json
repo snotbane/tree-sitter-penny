@@ -89,7 +89,11 @@
       "required": true,
       "types": [
         {
-          "type": "dialog",
+          "type": "string_raw",
+          "named": true
+        },
+        {
+          "type": "string_rich",
           "named": true
         }
       ]
@@ -153,12 +157,13 @@
     }
   },
   {
-    "type": "#",
-    "named": false
+    "type": "string_rich",
+    "named": true,
+    "fields": {}
   },
   {
-    "type": "dialog",
-    "named": true
+    "type": "#",
+    "named": false
   },
   {
     "type": "identifier",
@@ -170,6 +175,10 @@
   },
   {
     "type": "operator",
+    "named": true
+  },
+  {
+    "type": "string_raw",
     "named": true
   }
 ]

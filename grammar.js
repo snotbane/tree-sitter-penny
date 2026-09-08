@@ -10,9 +10,9 @@
 export default grammar({
 	name: "penny",
 
-	extras: ($) => [/\s/, $.comment],
+	externals: ($) => [$._string_rich_implicit, $._line_indent],
 
-	externals: ($) => [$.dialog],
+	extras: ($) => [/\s/, $._line_indent, $.comment],
 
 	word: ($) => $.identifier,
 
@@ -30,7 +30,7 @@ export default grammar({
 
 		_statement_path: ($) => choice($.path),
 
-		statement_dialog: ($) => seq($.dialog),
+		statement_dialog: ($) => seq($._string),
 
 		statement_label: ($) => seq($._keyword_label, $.identifier),
 
@@ -86,8 +86,6 @@ export default grammar({
 		_keyword_suspend: ($) => alias("suspend", $.keyword),
 		_keyword_var: ($) => alias("var", $.keyword),
 
-		// string_dialog: ($) => seq(/[\S].*/, repeat($._string_dialog_line)),
-
 		path: ($) =>
 			prec.right(
 				2,
@@ -117,6 +115,14 @@ export default grammar({
 		_operator_or: ($) => choice("||", "or"),
 		_operator_nand: ($) => "nand",
 		_operator_nor: ($) => "nor",
+
+		_string: ($) => choice($.string_rich, $.string_raw),
+		string_rich: ($) =>
+			choice(
+				seq(/[>+]/, optional($._string_rich_implicit)),
+				/[`]{3}.*?[`]{3}|[`].*?[`]/,
+			),
+		string_raw: ($) => /['"]{3}.*?['"]{3}|['"].*?['"]/,
 
 		number: ($) => choice(/\d+/, /\d+\.\d+/, /\.\d+/),
 
