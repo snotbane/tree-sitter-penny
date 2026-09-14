@@ -10,15 +10,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
         {
           "type": "number",
           "named": true
         },
         {
           "type": "path",
+          "named": true
+        },
+        {
+          "type": "string_rich",
           "named": true
         }
       ]

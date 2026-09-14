@@ -142,3 +142,123 @@ x &= 0
 		)
 	)
 )
+
+
+==================
+assign.txt :: Equals rich string
+==================
+.name => Rubin
+---
+(source_file
+	(statement_assign
+		(path
+			(operator)
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(string_rich)
+		)
+	)
+)
+
+
+
+==================
+assign.txt :: Equals rich string block
+==================
+.name => Rubin
+	{ru} Рубин
+	{ja} ルービン
+	{zh} 鱼宾
+---
+(source_file
+	(statement_assign
+		(path
+			(operator)
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(string_rich)
+		)
+	)
+)
+
+
+==================
+assign.txt :: New object assignment; name assignment
+==================
+Rubin = new object
+	.name => Rubin
+		{ru} Рубин
+		{ja} ルービン
+		{zh} 鱼宾
+	.age = 24
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(keyword)
+			(keyword)
+		)
+	)
+	(statement_assign
+		(path
+			(operator)
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(string_rich)
+		)
+	)
+)
+
+
+==================
+assign.txt :: Full character assignment
+==================
+Rubin = new object
+	.name => Rubin
+		{ru} Рубин
+		{ja} ルービン
+		{zh} 鱼宾
+	.age = 24
+---
+(source_file
+	(statement_assign
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(keyword)
+			(keyword)
+		)
+	)
+	(statement_assign
+		(path
+			(operator)
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(string_rich)
+		)
+	)
+	(statement_assign
+		(path
+			(operator)
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)

@@ -78,7 +78,8 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
     if (lexer->eof(lexer))
       return consumed_any;
 
-    lexer->advance(lexer, false); // consume '\n'
+    while (lexer->lookahead == '\n')
+      lexer->advance(lexer, false); // consume '\n'
 
     int32_t indent = 0;
     while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {

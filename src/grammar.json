@@ -124,15 +124,59 @@
       }
     },
     "expression": {
+      "type": "PREC_RIGHT",
+      "value": 3,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "path"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string_rich"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_expression_keyword"
+            }
+          ]
+        }
+      }
+    },
+    "_expression_keyword": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "number"
+          "name": "_keyword_await"
         },
         {
           "type": "SYMBOL",
-          "name": "path"
+          "name": "_keyword_elif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_else"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_new"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_keyword_object"
         }
       ]
     },
@@ -441,6 +485,10 @@
     "assigner": {
       "type": "PATTERN",
       "value": "[+\\-\\*\\/?&]?="
+    },
+    "_assigner_string_rich": {
+      "type": "PATTERN",
+      "value": "=>"
     },
     "operator": {
       "type": "CHOICE",

@@ -44,7 +44,28 @@ export default grammar({
 		statement_return: ($) =>
 			prec.left(2, seq($._keyword_return, optional($.expression))),
 
-		expression: ($) => choice($.number, $.path),
+		expression: ($) =>
+			prec.right(
+				3,
+				repeat1(
+					choice(
+						$.number,
+						$.path,
+						$.string_rich,
+						$._expression_keyword,
+					),
+				),
+			),
+
+		_expression_keyword: ($) =>
+			choice(
+				$._keyword_await,
+				$._keyword_elif,
+				$._keyword_else,
+				$._keyword_if,
+				$._keyword_new,
+				$._keyword_object,
+			),
 
 		_keyword: ($) =>
 			prec(
@@ -104,6 +125,9 @@ export default grammar({
 		identifier: ($) => /[a-z_][a-z_0-9]*/i,
 
 		assigner: ($) => /[+\-\*\/?&]?=/,
+		// assigner: ($) => choice(/[+\-\*\/?&]?=/, $._assigner_string_rich),
+
+		_assigner_string_rich: ($) => /=>/,
 
 		operator: ($) =>
 			choice(
