@@ -56,6 +56,7 @@ export default grammar({
 						$.path,
 						$.string_rich,
 						$._expression_keyword,
+						$.operator,
 					),
 				),
 			),
