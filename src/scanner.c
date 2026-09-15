@@ -108,8 +108,6 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
   int32_t base_indent = s->current_line_indent;
   bool consumed_any = false;
 
-  printf("The intended indentation for this line is :: %d\n", base_indent);
-
   while (true) {
     while (!lexer->eof(lexer) && !lookahead_is_newline(lexer)) {
       lexer->advance(lexer, false);
@@ -127,8 +125,6 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
       lexer->advance(lexer, false);
       consumed_any = true;
     }
-
-    assert(lexer->get_column(lexer) == 0);
 
     int32_t indent = 0;
     while (lookahead_is_indent(lexer)) {
