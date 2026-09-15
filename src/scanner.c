@@ -1,15 +1,31 @@
 #include "tree_sitter/parser.h"
+#include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 enum TokenType {
   _STRING_RICH_IMPLICIT,
-  _LINE_INDENT,
+  _WHITESPACE,
 };
 
 typedef struct {
   int32_t current_line_indent;
 } Scanner;
+
+static bool lookahead_is_whitespace(TSLexer *lexer) {
+  return (lexer->lookahead == ' ' || lexer->lookahead == '\t' ||
+          lexer->lookahead == '\r' || lexer->lookahead == '\n');
+}
+
+static bool lookahead_is_indent(TSLexer *lexer) {
+  return (lexer->lookahead == ' ' || lexer->lookahead == '\t');
+}
+
+static bool lookahead_is_newline(TSLexer *lexer) {
+  return (lexer->lookahead == '\n');
+}
 
 void *tree_sitter_penny_external_scanner_create() {
   return calloc(1, sizeof(Scanner));
@@ -38,25 +54,51 @@ void tree_sitter_penny_external_scanner_deserialize(void *payload,
 // Fires at the start of every physical line. Records indent depth as a
 // side effect; only emits a real (hidden) token if it actually consumed
 // leading whitespace, since zero-width external tokens aren't allowed.
-static bool scan_line_indent(Scanner *s, TSLexer *lexer) {
-  if (lexer->get_column(lexer) != 0)
-    return false;
+static bool scan_whitespace(Scanner *s, TSLexer *lexer) {
+  bool found_whitespace = false;
 
-  int32_t indent = 0;
-  while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+  while (true) {
+    if (lexer->eof(lexer)) {
+      break;
+    }
+
+    if (lexer->get_column(lexer) == 0) {
+      int32_t indent = 0;
+      while (lookahead_is_indent(lexer)) {
+        found_whitespace = true;
+        lexer->advance(lexer, false);
+        indent++;
+      }
+      s->current_line_indent = indent;
+    }
+    if (!lookahead_is_whitespace(lexer)) {
+      break;
+    }
+
+    found_whitespace = true;
     lexer->advance(lexer, false);
-    indent++;
   }
 
-  s->current_line_indent =
-      indent; // side effect happens regardless of return value
+  if (found_whitespace) {
+    lexer->mark_end(lexer);
+    lexer->result_symbol = _WHITESPACE;
+  }
 
-  if (indent == 0)
-    return false; // nothing to consume, but depth is now recorded
+  return found_whitespace;
 
-  lexer->mark_end(lexer);
-  lexer->result_symbol = _LINE_INDENT;
-  return true;
+  //   s->current_line_indent =
+  //       indent; // side effect happens regardless of return value
+
+  //   if (indent == 0)
+  //     return false; // nothing to consume, but depth is now recorded
+
+  //   printf("Set current indent to: %d\n", s->current_line_indent);
+  // } else {
+  // }
+
+  // lexer->mark_end(lexer);
+  // lexer->result_symbol = _WHITESPACE;
+  // return true;
 }
 
 // Fires right after '>' is consumed by the grammar. Uses the indent
@@ -66,8 +108,10 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
   int32_t base_indent = s->current_line_indent;
   bool consumed_any = false;
 
-  for (;;) {
-    while (!lexer->eof(lexer) && lexer->lookahead != '\n') {
+  printf("The intended indentation for this line is :: %d\n", base_indent);
+
+  while (true) {
+    while (!lexer->eof(lexer) && !lookahead_is_newline(lexer)) {
       lexer->advance(lexer, false);
       consumed_any = true;
     }
@@ -75,32 +119,115 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
     lexer->mark_end(lexer);
     lexer->result_symbol = _STRING_RICH_IMPLICIT;
 
-    if (lexer->eof(lexer))
-      return consumed_any;
+    if (lexer->eof(lexer)) {
+      break;
+    }
 
-    while (lexer->lookahead == '\n')
-      lexer->advance(lexer, false); // consume '\n'
+    while (lookahead_is_newline(lexer)) {
+      lexer->advance(lexer, false);
+      consumed_any = true;
+    }
+
+    assert(lexer->get_column(lexer) == 0);
 
     int32_t indent = 0;
-    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+    while (lookahead_is_indent(lexer)) {
       lexer->advance(lexer, false);
       indent++;
     }
 
-    if (lexer->lookahead == '\n' || lexer->eof(lexer))
-      return consumed_any;
+    if (lookahead_is_whitespace(lexer)) {
+      continue;
+    }
+
+    if (lexer->eof(lexer))
+      break;
     if (indent <= base_indent)
-      return consumed_any;
+      break;
 
     consumed_any = true;
   }
+
+  return consumed_any;
+
+  // while (true) {
+  //   if (lexer->eof(lexer)) {
+  //     break;
+  //   }
+
+  //   if (lookahead_is_newline(lexer)) {
+  //     lexer->advance(lexer, false);
+  //     continue;
+  //   }
+
+  //   if (lexer->get_column(lexer) == 0) {
+  //     int32_t indent = 0;
+  //     while (lookahead_is_indent(lexer)) {
+  //       lexer->advance(lexer, false);
+  //       indent++;
+  //     }
+
+  //     if (lookahead_is_newline(lexer)) {
+  //       lexer->advance(lexer, false);
+  //       continue;
+  //     }
+
+  //     if (indent <= base_indent) {
+  //       break;
+  //     }
+  //   }
+
+  //   if (!lookahead_is_whitespace(lexer)) {
+  //     lexer->mark_end(lexer);
+  //     lexer->result_symbol = _STRING_RICH_IMPLICIT;
+  //   }
+
+  //   lexer->advance(lexer, false);
+  // }
+
+  // bool consumed_any = false;
+  // // bool checking_indent = false;
+
+  // for (;;) {
+  //   while (!lexer->eof(lexer) && lexer->lookahead != '\n') {
+  //     lexer->advance(lexer, false);
+  //     consumed_any = true;
+  //   }
+
+  //   lexer->mark_end(lexer);
+  //   lexer->result_symbol = _STRING_RICH_IMPLICIT;
+
+  //   if (lexer->eof(lexer))
+  //     return consumed_any;
+
+  //   while (lexer->lookahead == '\n')
+  //     lexer->advance(lexer, false); // consume '\n+'
+
+  //   int32_t indent = 0;
+  //   while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+  //     lexer->advance(lexer, false);
+  //     indent++;
+  //   }
+
+  //   if (lexer->lookahead == '\n' || lexer->eof(lexer))
+  //     return consumed_any;
+  //   if (indent <= base_indent)
+  //     return consumed_any;
+
+  //   consumed_any = true;
+  // }
+  // return consumed_any;
 }
 
 bool tree_sitter_penny_external_scanner_scan(void *payload, TSLexer *lexer,
                                              const bool *valid_symbols) {
   Scanner *s = (Scanner *)payload;
 
-  if (valid_symbols[_LINE_INDENT] && scan_line_indent(s, lexer)) {
+  if (lexer->get_column(lexer) == 0) {
+    s->current_line_indent = 0;
+  }
+
+  if (valid_symbols[_WHITESPACE] && scan_whitespace(s, lexer)) {
     return true;
   }
 

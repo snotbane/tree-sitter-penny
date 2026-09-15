@@ -194,7 +194,6 @@ Rubin = new object
 		{ru} Рубин
 		{ja} ルービン
 		{zh} 鱼宾
-	.age = 24
 ---
 (source_file
 	(statement_assign

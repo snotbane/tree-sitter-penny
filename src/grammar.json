@@ -35,6 +35,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "statement_pass"
+        },
+        {
+          "type": "SYMBOL",
           "name": "statement_print"
         },
         {
@@ -84,6 +88,10 @@
     "_statement_path": {
       "type": "SYMBOL",
       "name": "path"
+    },
+    "statement_pass": {
+      "type": "SYMBOL",
+      "name": "_keyword_pass"
     },
     "statement_print": {
       "type": "SEQ",
@@ -596,7 +604,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "[>+]"
+              "value": "[>+]\\s*"
             },
             {
               "type": "CHOICE",
@@ -655,12 +663,8 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
-    },
-    {
       "type": "SYMBOL",
-      "name": "_line_indent"
+      "name": "_whitespace"
     },
     {
       "type": "SYMBOL",
@@ -676,7 +680,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_line_indent"
+      "name": "_whitespace"
     }
   ],
   "inline": [],

@@ -236,10 +236,23 @@ dialog.txt :: Rich block, multi spaced lines
 
 
 ==================
-dialog.txt :: Rich block, multi spaced and indented translation
+dialog.txt :: Rich block, break then indent
 ==================
 >
-	{en}
+	Hello
+	Goodbye
+------------------
+(source_file
+	(statement_dialog
+		(string_rich)
+	)
+)
+
+
+==================
+dialog.txt :: Rich block, multi spaced and indented translation
+==================
+>	{en}
 		Hello
 
 	{es}

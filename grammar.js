@@ -10,9 +10,9 @@
 export default grammar({
 	name: "penny",
 
-	externals: ($) => [$._string_rich_implicit, $._line_indent],
+	externals: ($) => [$._string_rich_implicit, $._whitespace],
 
-	extras: ($) => [/\s/, $._line_indent, $.comment],
+	extras: ($) => [$._whitespace, $.comment],
 
 	word: ($) => $.identifier,
 
@@ -26,6 +26,7 @@ export default grammar({
 				$.statement_dialog,
 				$.statement_dialog_close,
 				$.statement_label,
+				$.statement_pass,
 				$.statement_print,
 				$.statement_return,
 			),
@@ -38,6 +39,8 @@ export default grammar({
 
 		statement_label: ($) => seq($._keyword_label, $.identifier),
 		_statement_path: ($) => $.path,
+
+		statement_pass: ($) => $._keyword_pass,
 
 		statement_print: ($) => seq($._keyword_print, $.expression),
 
@@ -150,7 +153,7 @@ export default grammar({
 		_string: ($) => choice($.string_rich, $.string_raw),
 		string_rich: ($) =>
 			choice(
-				seq(/[>+]/, optional($._string_rich_implicit)),
+				seq(/[>+]\s*/, optional($._string_rich_implicit)),
 				/[`]{3}.*?[`]{3}|[`].*?[`]/,
 			),
 		string_raw: ($) => /['"]{3}.*?['"]{3}|['"].*?['"]/,
