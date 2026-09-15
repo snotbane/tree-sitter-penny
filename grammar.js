@@ -141,7 +141,7 @@ export default grammar({
 				$._operator_nand,
 				$._operator_nor,
 				$.brace,
-				/[=!<>]=|[+\-\*\/%&|<()]/,
+				/[=!<>]=|[+\-\*\/%&|<]/,
 			),
 
 		brace: ($) => /[\(\)\[\]\{\}]/,
