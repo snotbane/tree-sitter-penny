@@ -140,8 +140,11 @@ export default grammar({
 				$._operator_or,
 				$._operator_nand,
 				$._operator_nor,
+				$.brace,
 				/[=!<>]=|[+\-\*\/%&|<()]/,
 			),
+
+		brace: ($) => /[\(\)\[\]\{\}]/,
 
 		_operator_and: ($) => choice("&&", "and"),
 		_operator_angle_right: ($) => alias(">", $.operator),
