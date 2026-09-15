@@ -526,10 +526,18 @@
           "name": "_operator_nor"
         },
         {
+          "type": "SYMBOL",
+          "name": "brace"
+        },
+        {
           "type": "PATTERN",
-          "value": "[=!<>]=|[+\\-\\*\\/%&|<()]"
+          "value": "[=!<>]=|[+\\-\\*\\/%&|<]"
         }
       ]
+    },
+    "brace": {
+      "type": "PATTERN",
+      "value": "[\\(\\)\\[\\]\\{\\}]"
     },
     "_operator_and": {
       "type": "CHOICE",
