@@ -52,7 +52,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "path"
+          "name": "_path_declaration"
         },
         {
           "type": "SYMBOL",
@@ -87,7 +87,41 @@
     },
     "_statement_path": {
       "type": "SYMBOL",
-      "name": "path"
+      "name": "_path_declaration"
+    },
+    "_path_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_keyword_def"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_keyword_let"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_keyword_var"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "path"
+        }
+      ]
     },
     "statement_pass": {
       "type": "SYMBOL",
@@ -208,6 +242,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "_keyword_def"
+          },
+          {
+            "type": "SYMBOL",
             "name": "_keyword_elif"
           },
           {
@@ -221,10 +259,6 @@
           {
             "type": "SYMBOL",
             "name": "_keyword_if"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_keyword_init"
           },
           {
             "type": "SYMBOL",
@@ -295,6 +329,15 @@
       "named": true,
       "value": "keyword"
     },
+    "_keyword_def": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "def"
+      },
+      "named": true,
+      "value": "keyword"
+    },
     "_keyword_elif": {
       "type": "ALIAS",
       "content": {
@@ -327,15 +370,6 @@
       "content": {
         "type": "STRING",
         "value": "if"
-      },
-      "named": true,
-      "value": "keyword"
-    },
-    "_keyword_init": {
-      "type": "ALIAS",
-      "content": {
-        "type": "STRING",
-        "value": "init"
       },
       "named": true,
       "value": "keyword"

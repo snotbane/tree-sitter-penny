@@ -31,14 +31,22 @@ export default grammar({
 				$.statement_return,
 			),
 
-		statement_assign: ($) => seq($.path, $.assigner, $.expression),
+		statement_assign: ($) =>
+			seq($._path_declaration, $.assigner, $.expression),
 
 		statement_dialog: ($) => $._string,
 
 		statement_dialog_close: ($) => /-+/,
 
 		statement_label: ($) => seq($._keyword_label, $.identifier),
-		_statement_path: ($) => $.path,
+		_statement_path: ($) => $._path_declaration,
+		_path_declaration: ($) =>
+			seq(
+				optional(
+					choice($._keyword_def, $._keyword_let, $._keyword_var),
+				),
+				$.path,
+			),
 
 		statement_pass: ($) => $._keyword_pass,
 
@@ -77,11 +85,11 @@ export default grammar({
 				choice(
 					$._keyword_await,
 					$._keyword_call,
+					$._keyword_def,
 					$._keyword_elif,
 					$._keyword_else,
 					$._keyword_exit,
 					$._keyword_if,
-					$._keyword_init,
 					$._keyword_jump,
 					$._keyword_label,
 					$._keyword_let,
@@ -98,11 +106,11 @@ export default grammar({
 			),
 		_keyword_await: ($) => alias("await", $.keyword),
 		_keyword_call: ($) => alias("call", $.keyword),
+		_keyword_def: ($) => alias("def", $.keyword),
 		_keyword_elif: ($) => alias("elif", $.keyword),
 		_keyword_else: ($) => alias("else", $.keyword),
 		_keyword_exit: ($) => alias("exit", $.keyword),
 		_keyword_if: ($) => alias("if", $.keyword),
-		_keyword_init: ($) => alias("init", $.keyword),
 		_keyword_jump: ($) => alias("jump", $.keyword),
 		_keyword_label: ($) => alias("label", $.keyword),
 		_keyword_let: ($) => alias("let", $.keyword),

@@ -261,3 +261,44 @@ Rubin = new object
 		)
 	)
 )
+
+
+==================
+assign.txt :: def, let, var keywords
+==================
+def x = 0
+let y = 1
+var x = 2
+---
+(source_file
+	(statement_assign
+		(keyword)
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+	(statement_assign
+		(keyword)
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+	(statement_assign
+		(keyword)
+		(path
+			(identifier)
+		)
+		(assigner)
+		(expression
+			(number)
+		)
+	)
+)

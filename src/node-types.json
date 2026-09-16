@@ -89,6 +89,10 @@
       "required": false,
       "types": [
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
           "type": "path",
           "named": true
         },
@@ -137,6 +141,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "keyword",
           "named": true
         },
         {
