@@ -109,7 +109,7 @@ export default grammar({
 						optional(","),
 					),
 				),
-				/\s*\]/,
+				"]",
 			),
 
 		function_call: ($) =>

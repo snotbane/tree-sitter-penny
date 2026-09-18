@@ -484,8 +484,8 @@
           ]
         },
         {
-          "type": "PATTERN",
-          "value": "\\s*\\]"
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
