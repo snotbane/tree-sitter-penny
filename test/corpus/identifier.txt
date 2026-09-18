@@ -1,56 +1,50 @@
 ==================
 Single-character identifier
 ==================
-
 x
-
 ---
 (source_file
-	(path
-		(identifier)))
+	(path)
+)
 
 
 ==================
 Single-word identifier
 ==================
-
 avalon009
-
 ---
 (source_file
-	(path
-		(identifier)))
+	(path)
+)
 
 
 ==================
 Multi-identifier absolute path
 ==================
-
 character.name
-
 ---
 (source_file
-	(path
-		(identifier)
-		(operator)
-		(identifier)
-	)
+	(path)
 )
-
 
 
 ==================
 Multi-identifier relative path
 ==================
-
 .character.name
-
 ---
 (source_file
-	(path
-		(operator)
-		(identifier)
-		(operator)
-		(identifier)
-	)
+	(path)
+)
+
+
+==================
+Two paths on separate lines
+==================
+Rubin
+	.name
+---
+(source_file
+	(path)
+	(path)
 )

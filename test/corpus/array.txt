@@ -1,0 +1,133 @@
+
+
+==================
+array.txt :: empty array
+==================
+[]
+---
+(source_file
+	(array)
+)
+
+
+==================
+array.txt :: array with single value (single line)
+==================
+[ 0 ]
+---
+(source_file
+	(array
+		(expression
+			(number)
+		)
+	)
+)
+
+==================
+array.txt :: array with multiple values (single line)
+==================
+[ 0, "asdf", something ]
+---
+(source_file
+	(array
+		(expression
+			(number)
+		)
+		(expression
+			(string_raw)
+		)
+		(expression
+			(path)
+		)
+	)
+)
+
+
+==================
+array.txt :: array with multiple values (multi line)
+==================
+[
+	0,
+	"asdf",
+	something
+]
+---
+(source_file
+	(array
+		(expression
+			(number)
+		)
+		(expression
+			(string_raw)
+		)
+		(expression
+			(path)
+		)
+	)
+)
+
+
+
+==================
+array.txt :: array with multiple values (multi line, trailing comma)
+==================
+[
+	0,
+	"asdf",
+	something,
+]
+---
+(source_file
+	(array
+		(expression
+			(number)
+		)
+		(expression
+			(string_raw)
+		)
+		(expression
+			(path)
+		)
+	)
+)
+
+
+
+
+==================
+array.txt :: typical filter setup
+==================
+def Character = new object
+	.filters = [
+		0,
+		"asdf",
+		something,
+	]
+---
+(source_file
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(op)
+			(keyword)
+		)
+	)
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(array
+				(expression
+					(number)
+				)
+				(expression
+					(string_raw)
+				)
+				(expression
+					(path)
+				)
+			)
+		)
+	)
+)

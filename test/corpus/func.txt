@@ -1,0 +1,82 @@
+
+==================
+func.txt :: simple function
+==================
+think()
+---
+(source_file
+	(function_call
+		(path)
+	)
+)
+
+==================
+func.txt :: function with args
+==================
+think(0)
+---
+(source_file
+	(function_call
+		(path)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+func.txt :: function with more args
+==================
+think.better("to", me)
+---
+(source_file
+	(function_call
+		(path)
+		(expression
+			(string_raw)
+		)
+		(expression
+			(path)
+		)
+	)
+)
+
+
+
+==================
+func.txt :: await function
+==================
+await travel(here)
+---
+(source_file
+	(function_call
+		(path)
+		(expression
+			(path)
+		)
+	)
+)
+
+==================
+func.txt :: await (number) stmt
+==================
+await 1
+---
+(source_file
+	(stmt_await
+		(number)
+	)
+)
+
+
+==================
+func.txt :: await (signal) stmt
+==================
+await character.stopped
+---
+(source_file
+	(stmt_await
+		(path)
+	)
+)

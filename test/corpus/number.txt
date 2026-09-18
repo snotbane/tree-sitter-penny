@@ -1,42 +1,27 @@
 ==================
-Zero Integer
+number.txt :: Zero Integer
 ==================
-
-return 0
-
+0
 ---
 (source_file
-	(statement_return
-		(keyword)
-		(expression
-			(number)))
-	)
+	(number)
+)
 
 ==================
-Zero Float
+number.txt :: Zero Float
 ==================
-
-return 0.0
-
+0.0
 ---
 (source_file
-	(statement_return
-		(keyword)
-		(expression
-			(number)))
-	)
+	(number)
+)
 
 
 ==================
-Half Float
+number.txt :: Half Float
 ==================
-
-return .5
-
+.5
 ---
 (source_file
-	(statement_return
-		(keyword)
-		(expression
-			(number)))
-	)
+	(number)
+)

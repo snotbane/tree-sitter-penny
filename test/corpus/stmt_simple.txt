@@ -1,0 +1,134 @@
+
+==================
+stmt_simple.txt :: pass
+==================
+pass
+---
+(source_file
+	(stmt_pass)
+)
+
+
+==================
+stmt_simple.txt :: return with no expression
+==================
+return
+---
+(source_file
+	(stmt_return)
+)
+
+
+==================
+stmt_simple.txt :: return with expression
+==================
+return 0
+---
+(source_file
+	(stmt_return
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+stmt_simple.txt :: suspend
+==================
+suspend 1
+---
+(source_file
+	(stmt_suspend
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+stmt_simple.txt :: exit
+==================
+exit 1
+---
+(source_file
+	(stmt_exit
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+stmt_simple.txt :: print
+==================
+print 1
+---
+(source_file
+	(stmt_print
+		(expression
+			(number)
+		)
+	)
+)
+
+==================
+stmt_simple.txt :: label
+==================
+label start
+---
+(source_file
+	(stmt_label
+		(identifier)
+	)
+)
+
+
+==================
+stmt_simple.txt :: label (invalid; empty)
+==================
+label
+---
+(source_file
+	(ERROR)
+)
+
+
+==================
+stmt_simple.txt :: label (invalid; number)
+==================
+label 123
+---
+(source_file
+	(ERROR)
+)
+
+
+==================
+stmt_simple.txt :: jump
+==================
+jump start
+---
+(source_file
+	(stmt_jump
+		(expression
+			(path)
+		)
+	)
+)
+
+
+==================
+stmt_simple.txt :: call
+==================
+call start
+---
+(source_file
+	(stmt_call
+		(expression
+			(path)
+		)
+	)
+)

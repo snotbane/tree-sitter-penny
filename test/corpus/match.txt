@@ -1,0 +1,20 @@
+
+==================
+match.txt :: match default only
+==================
+match x:
+	opt _:
+		pass
+---
+(source_file
+	(stmt_match
+		(expression
+			(path)
+		)
+	)
+	(stmt_option
+		(default)
+	)
+	(stmt_pass)
+
+)

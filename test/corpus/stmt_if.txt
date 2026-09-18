@@ -1,0 +1,45 @@
+
+==================
+stmt_if.txt :: if number greater than number
+==================
+if x > y:
+	pass
+---
+(source_file
+	(stmt_if
+		(expression
+			(path)
+			(op)
+			(path)
+		)
+	)
+	(stmt_pass)
+)
+
+
+==================
+stmt_if.txt :: elif
+==================
+elif true:
+	pass
+---
+(source_file
+	(stmt_elif
+		(expression
+			(boolean)
+		)
+	)
+	(stmt_pass)
+)
+
+
+==================
+stmt_if.txt :: else
+==================
+else:
+	pass
+---
+(source_file
+	(stmt_else)
+	(stmt_pass)
+)

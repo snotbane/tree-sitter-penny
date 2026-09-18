@@ -14,164 +14,187 @@ export default grammar({
 
 	extras: ($) => [$._whitespace, $.comment],
 
-	word: ($) => $.identifier,
+	// word: ($) => $.identifier,
 
 	rules: {
-		source_file: ($) => repeat($._statement),
+		source_file: ($) => repeat(choice($._standalone_value, $._stmt)),
 
-		_statement: ($) =>
+		_standalone_value: ($) =>
 			choice(
-				$.statement_assign,
-				$._statement_path,
-				$.statement_dialog,
-				$.statement_dialog_close,
-				$.statement_label,
-				$.statement_pass,
-				$.statement_print,
-				$.statement_return,
-			),
-
-		statement_assign: ($) =>
-			seq($._path_declaration, $.assigner, $.expression),
-
-		statement_dialog: ($) => $._string,
-
-		statement_dialog_close: ($) => /-+/,
-
-		statement_label: ($) => seq($._keyword_label, $.identifier),
-		_statement_path: ($) => $._path_declaration,
-		_path_declaration: ($) =>
-			seq(
-				optional(
-					choice($._keyword_def, $._keyword_let, $._keyword_var),
-				),
-				$.path,
-			),
-
-		statement_pass: ($) => $._keyword_pass,
-
-		statement_print: ($) => seq($._keyword_print, $.expression),
-
-		statement_return: ($) =>
-			prec.left(2, seq($._keyword_return, optional($.expression))),
-
-		expression: ($) =>
-			prec.right(
-				3,
-				repeat1(
+				prec(10, $.function_call),
+				prec(10, $.array),
+				prec(2, alias("object", $.keyword)),
+				prec(
+					-10,
 					choice(
+						$.null,
+						$.boolean,
 						$.number,
+						$.string_raw,
+						$.filter,
 						$.path,
-						$.string_rich,
-						$._expression_keyword,
-						$.operator,
 					),
 				),
 			),
 
-		_expression_keyword: ($) =>
-			choice(
-				$._keyword_await,
-				$._keyword_elif,
-				$._keyword_else,
-				$._keyword_if,
-				$._keyword_new,
-				$._keyword_object,
-			),
+		comment: ($) => seq("#", /.*/),
 
-		_keyword: ($) =>
-			prec(
-				100,
-				choice(
-					$._keyword_await,
-					$._keyword_call,
-					$._keyword_def,
-					$._keyword_elif,
-					$._keyword_else,
-					$._keyword_exit,
-					$._keyword_if,
-					$._keyword_jump,
-					$._keyword_label,
-					$._keyword_let,
-					$._keyword_match,
-					$._keyword_menu,
-					$._keyword_new,
-					$._keyword_object,
-					$._keyword_pass,
-					$._keyword_print,
-					$._keyword_return,
-					$._keyword_suspend,
-					$._keyword_var,
-				),
-			),
-		_keyword_await: ($) => alias("await", $.keyword),
-		_keyword_call: ($) => alias("call", $.keyword),
-		_keyword_def: ($) => alias("def", $.keyword),
-		_keyword_elif: ($) => alias("elif", $.keyword),
-		_keyword_else: ($) => alias("else", $.keyword),
-		_keyword_exit: ($) => alias("exit", $.keyword),
-		_keyword_if: ($) => alias("if", $.keyword),
-		_keyword_jump: ($) => alias("jump", $.keyword),
-		_keyword_label: ($) => alias("label", $.keyword),
-		_keyword_let: ($) => alias("let", $.keyword),
-		_keyword_match: ($) => alias("match", $.keyword),
-		_keyword_menu: ($) => alias("menu", $.keyword),
-		_keyword_new: ($) => alias("new", $.keyword),
-		_keyword_object: ($) => alias("object", $.keyword),
-		_keyword_pass: ($) => alias("pass", $.keyword),
-		_keyword_print: ($) => alias("print", $.keyword),
-		_keyword_return: ($) => alias("return", $.keyword),
-		_keyword_suspend: ($) => alias("suspend", $.keyword),
-		_keyword_var: ($) => alias("var", $.keyword),
+		null: ($) => /[Nn]ull|NULL/,
 
-		path: ($) =>
-			prec.right(
-				2,
-				seq(
-					optional($._operator_dot),
-					$.identifier,
-					repeat(seq($._operator_dot, $.identifier)),
-				),
-			),
-
-		identifier: ($) => /[a-z_][a-z_0-9]*/i,
-
-		assigner: ($) => /[+\-\*\/?&]?=/,
-		// assigner: ($) => choice(/[+\-\*\/?&]?=/, $._assigner_string_rich),
-
-		_assigner_string_rich: ($) => /=>/,
-
-		operator: ($) =>
-			choice(
-				$._operator_and,
-				$._operator_angle_right,
-				$._operator_dot,
-				$._operator_or,
-				$._operator_nand,
-				$._operator_nor,
-				$.brace,
-				/[=!<>]=|[+\-\*\/%&|<]/,
-			),
-
-		brace: ($) => /[\(\)\[\]\{\}]/,
-
-		_operator_and: ($) => choice("&&", "and"),
-		_operator_angle_right: ($) => alias(">", $.operator),
-		_operator_dot: ($) => alias(".", $.operator),
-		_operator_or: ($) => choice("||", "or"),
-		_operator_nand: ($) => "nand",
-		_operator_nor: ($) => "nor",
-
-		_string: ($) => choice($.string_rich, $.string_raw),
-		string_rich: ($) =>
-			choice(
-				seq(/[>+]\s*/, optional($._string_rich_implicit)),
-				/[`]{3}.*?[`]{3}|[`].*?[`]/,
-			),
-		string_raw: ($) => /['"]{3}.*?['"]{3}|['"].*?['"]/,
+		boolean: ($) => choice(/[Tt]rue|TRUE/, /[Ff]alse|FALSE/),
 
 		number: ($) => choice(/\d+/, /\d+\.\d+/, /\.\d+/),
 
-		comment: ($) => seq("#", /.*/),
+		escape_sequence: ($) => prec(10, /\\./),
+
+		string_raw: ($) =>
+			choice(
+				seq("'", repeat(choice($.escape_sequence, /[^']/)), "'"),
+				seq('"', repeat(choice($.escape_sequence, /[^"]/)), '"'),
+			),
+
+		string_rich: ($) =>
+			choice(
+				seq(/>\s*/, optional($._string_rich_implicit)),
+				seq("`", repeat(choice($.escape_sequence, /[^`]/)), "`"),
+			),
+
+		filter: ($) =>
+			prec(3, seq($.string_raw, "->", $._expression_or_string_rich)),
+
+		path: ($) => /\.?[a-z_][a-z_0-9]*(?:\.[a-z_][a-z_0-9]*)*/i,
+		// prec.right(
+		// 	2,
+		// 	seq(
+		// 		optional("."),
+		// 		$.identifier,
+		// 		repeat(seq(".", $.identifier)),
+		// 	),
+		// ),
+
+		identifier: ($) => /[a-z_][a-z_0-9]*/i,
+
+		array: ($) =>
+			seq(
+				"[",
+				optional(
+					seq(
+						$._expression_or_string_rich,
+						repeat(seq(",", $._expression_or_string_rich)),
+						optional(","),
+					),
+				),
+				"]",
+			),
+
+		function_call: ($) =>
+			seq(
+				prec(2, optional("await")),
+				$.path,
+				"(",
+				optional(seq($.expression, repeat(seq(",", $.expression)))),
+				")",
+			),
+
+		expression: ($) =>
+			prec.right(2, repeat1(choice($._standalone_value, $.op))),
+		// prec.right(
+		// 	2,
+		// 	seq(
+		// 		repeat($.op),
+		// 		$._standalone_value,
+		// 		repeat(seq(repeat1($.op), $._standalone_value)),
+		// 	),
+		// ),
+
+		_expression_or_string_rich: ($) =>
+			choice($.expression, $.string_rich, alias("_", $.default)),
+
+		op: ($) => choice("and", "or", "new", "is", /[\+\-\*\/\|&<>]+/),
+
+		assignment: ($) => /[\+\-\*\/%?]?=/,
+
+		_stmt: ($) =>
+			choice(
+				$.stmt_say,
+				seq(
+					choice(
+						$.stmt_ask,
+						$.stmt_elif,
+						$.stmt_else,
+						$.stmt_if,
+						$.stmt_match,
+						$.stmt_option,
+					),
+					":",
+				),
+
+				seq(
+					choice(
+						$._stmt_path,
+						$.stmt_assign,
+						$.stmt_await,
+						$.stmt_call,
+						$.stmt_exit,
+						$.stmt_jump,
+						$.stmt_label,
+						$.stmt_pass,
+						$.stmt_print,
+						$.stmt_return,
+						$.stmt_shut,
+						$.stmt_suspend,
+					),
+					prec(5, choice(";", "\n", eof())),
+				),
+			),
+
+		_stmt_path: ($) => $.path,
+
+		// _stmt_branch: ($) => seq($._expression_or_string_rich, ":"),
+
+		stmt_ask: ($) => seq(optional($.path), "ask"),
+
+		stmt_assign: ($) =>
+			seq(
+				optional(choice("def", "let", "var")),
+				$.path,
+				$.assignment,
+				$._expression_or_string_rich,
+			),
+
+		stmt_await: ($) => seq("await", choice($.number, $.path)),
+
+		stmt_call: ($) => seq("call", $.expression),
+
+		stmt_delay: ($) => seq("delay", $.expression),
+
+		stmt_elif: ($) => seq("elif", $.expression),
+
+		stmt_else: ($) => "else",
+
+		stmt_exit: ($) => seq("exit", optional($.expression)),
+
+		stmt_if: ($) => seq("if", $.expression),
+
+		stmt_jump: ($) => seq("jump", $.expression),
+
+		stmt_label: ($) => seq("label", $.identifier),
+
+		stmt_option: ($) => seq("opt", optional($._expression_or_string_rich)),
+
+		stmt_match: ($) => seq("match", $.expression),
+
+		stmt_pass: ($) => "pass",
+
+		stmt_print: ($) => seq("print", optional($._expression_or_string_rich)),
+
+		stmt_return: ($) => seq("return", optional($.expression)),
+
+		stmt_say: ($) =>
+			seq(optional($.path), optional(seq("say", ":")), $.string_rich),
+
+		stmt_shut: ($) => seq(optional($.path), /-+/),
+
+		stmt_suspend: ($) => seq("suspend", optional($.expression)),
 	},
 });

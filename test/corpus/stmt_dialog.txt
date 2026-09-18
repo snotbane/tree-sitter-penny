@@ -1,0 +1,125 @@
+==================
+string_rich.txt :: Empty rich dialog statement
+==================
+>
+---
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+==================
+string_rich.txt :: Empty rich dialog statement with identifier
+==================
+rubin >
+---
+(source_file
+	(stmt_say
+		(path)
+		(string_rich)
+	)
+)
+
+==================
+string_rich.txt :: Single line
+==================
+>	Hello
+---
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+string_rich.txt :: Single line after break
+==================
+>
+	Hello
+---
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+string_rich.txt :: Multi line after break
+==================
+>	Hello
+
+	Goodbye
+---
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+string_rich.txt :: Full translation
+==================
+>
+	{en}
+		Hello
+
+	{es}
+		Hola
+
+	{ja}
+		Konnichiwa
+---
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+string_rich.txt :: Dialog followed by other statement
+==================
+>	Hello
+pass
+------------------
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_pass)
+)
+
+
+==================
+string_rich.txt :: Close
+==================
+>	Hello
+---
+------------------
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_shut)
+)
+
+
+==================
+string_rich.txt :: Close with specific path
+==================
+Rubin >	Hello
+Rubin ---
+------------------
+(source_file
+	(stmt_say
+		(path)
+		(string_rich)
+	)
+	(stmt_shut
+		(path)
+	)
+)

@@ -1,0 +1,31 @@
+==================
+element.txt :: raw string
+==================
+"asdf"
+---
+(source_file
+	(string_raw)
+)
+
+
+==================
+element.txt :: raw string with internal escaped quotes
+==================
+"\"asdf\""
+---
+(source_file
+	(string_raw
+		(escape_sequence)
+		(escape_sequence)
+	)
+)
+
+
+==================
+element.txt :: raw string with internal quotes
+==================
+'"asdf"'
+---
+(source_file
+	(string_raw)
+)

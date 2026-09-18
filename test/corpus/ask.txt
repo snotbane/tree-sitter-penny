@@ -1,0 +1,156 @@
+
+
+==================
+ask.txt :: single option
+==================
+ask:
+	opt:
+		pass
+---
+(source_file
+	(stmt_ask)
+	(stmt_option)
+	(stmt_pass)
+)
+
+
+==================
+ask.txt :: One option, multiple statements
+==================
+ask:
+	opt:
+		> You have chosen Option A.
+		> You have chosen Option A (again)!
+---
+(source_file
+	(stmt_ask)
+	(stmt_option)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+ask.txt :: Two options
+==================
+ask:
+	opt 0:
+		> You have chosen Option A.
+	opt 1:
+		> You have chosen Option B!
+---
+(source_file
+	(stmt_ask)
+	(stmt_option
+		(expression
+			(number)
+		)
+	)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_option
+		(expression
+			(number)
+		)
+	)
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+
+==================
+ask.txt :: rich dialog options
+==================
+ask:
+	opt > Option A
+	:
+		> You have chosen Option A.
+
+	opt > Option B
+	:
+		> You have chosen Option B!
+---
+(source_file
+	(stmt_ask)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+ask.txt :: nested askes
+==================
+ask:
+	opt > Option A
+	:
+		ask:
+			opt > Option A1
+			:
+				> You have chosen Option A1.
+			opt > Option A2
+			:
+				> You have chosen Option A2.
+
+	opt > Option B
+	:
+		ask:
+			opt > Option B1
+			:
+				> You have chosen Option B1.
+			opt > Option B2
+			:
+				> You have chosen Option B2.
+
+---
+(source_file
+	(stmt_ask)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_ask)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_ask)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_option
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+)

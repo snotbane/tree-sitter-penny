@@ -1,0 +1,80 @@
+
+==================
+stmt_assign.txt :: no declaration; x = number
+==================
+x = 123
+---
+(source_file
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(number)
+		)
+	)
+)
+
+==================
+stmt_assign.txt :: let; x = number
+==================
+let x = 123
+---
+(source_file
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+stmt_assign.txt :: def; x = string_rich
+==================
+def x => Rubin
+	{es}
+---
+(source_file
+	(stmt_assign
+		(path)
+		(assignment)
+		(string_rich)
+	)
+)
+
+
+
+==================
+stmt_assign.txt :: Path stmt; nested assignment
+==================
+Rubin
+	.age = 24
+---
+(source_file
+	(path)
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(number)
+		)
+	)
+)
+
+
+==================
+stmt_assign.txt :: x -= number
+==================
+x -= 10
+---
+(source_file
+	(stmt_assign
+		(path)
+		(assignment)
+		(expression
+			(number)
+		)
+	)
+)

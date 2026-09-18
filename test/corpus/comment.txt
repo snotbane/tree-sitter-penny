@@ -1,6 +1,6 @@
 
 ==================
-Line comment with no separation whitespace
+comment.txt :: Line comment with no separation whitespace
 ==================
 
 #Comment
@@ -11,7 +11,7 @@ Line comment with no separation whitespace
 
 
 ==================
-Line comment with space separation
+comment.txt :: Line comment with space separation
 ==================
 
 # Comment
@@ -21,7 +21,7 @@ Line comment with space separation
 	(comment))
 
 ==================
-Line comment with tab separation
+comment.txt :: Line comment with tab separation
 ==================
 
 #	Comment
@@ -32,7 +32,7 @@ Line comment with tab separation
 
 
 ==================
-Line comment with double hashtag
+comment.txt :: Line comment with double hashtag
 ==================
 
 ## Comment

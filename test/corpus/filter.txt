@@ -1,0 +1,28 @@
+
+
+==================
+filter.txt :: raw -> raw
+==================
+"abc" -> "def"
+---
+(source_file
+	(filter
+		(string_raw)
+		(expression
+			(string_raw)
+		)
+	)
+)
+
+
+==================
+filter.txt :: raw -> rich
+==================
+"abc" ->> def
+---
+(source_file
+	(filter
+		(string_raw)
+		(string_rich)
+	)
+)
