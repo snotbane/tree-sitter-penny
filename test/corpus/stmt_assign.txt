@@ -6,7 +6,9 @@ x = 123
 ---
 (source_file
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(number)
@@ -21,7 +23,9 @@ let x = 123
 ---
 (source_file
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(number)
@@ -38,9 +42,13 @@ def x => Rubin
 ---
 (source_file
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
-		(string_rich)
+		(expression
+			(string_rich)
+		)
 	)
 )
 
@@ -53,9 +61,15 @@ Rubin
 	.age = 24
 ---
 (source_file
-	(path)
+	(expression
+		(path
+			(identifier)
+		)
+	)
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(number)
@@ -71,7 +85,9 @@ x -= 10
 ---
 (source_file
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(number)

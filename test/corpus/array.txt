@@ -122,7 +122,9 @@ def Character = new object
 ---
 (source_file
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(op)
@@ -130,7 +132,9 @@ def Character = new object
 		)
 	)
 	(stmt_assign
-		(path)
+		(path
+			(identifier)
+		)
 		(assignment)
 		(expression
 			(array
@@ -141,7 +145,9 @@ def Character = new object
 					(string_raw)
 				)
 				(expression
-					(path)
+		(path
+			(identifier)
+		)
 				)
 			)
 		)

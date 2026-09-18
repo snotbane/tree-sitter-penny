@@ -8,9 +8,13 @@ if x > y:
 (source_file
 	(stmt_if
 		(expression
-			(path)
+			(path
+				(identifier)
+			)
 			(op)
-			(path)
+			(path
+				(identifier)
+			)
 		)
 	)
 	(stmt_pass)

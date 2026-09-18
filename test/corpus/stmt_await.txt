@@ -1,0 +1,27 @@
+
+
+==================
+stmt_await.txt :: await (number) stmt
+==================
+await 1
+---
+(source_file
+	(stmt_await
+		(number)
+	)
+)
+
+
+==================
+stmt_await.txt :: await (signal) stmt
+==================
+await character.stopped
+---
+(source_file
+	(stmt_await
+		(path
+			(identifier)
+			(identifier)
+		)
+	)
+)

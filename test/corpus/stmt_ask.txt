@@ -4,27 +4,34 @@
 stmt_ask.txt :: single option
 ==================
 ask:
-	opt:
+	_:
 		pass
 ---
 (source_file
 	(stmt_ask)
-	(stmt_option)
+	(option
+		(default)
+	)
 	(stmt_pass)
 )
+
+
+
 
 
 ==================
 stmt_ask.txt :: One option, multiple statements
 ==================
 ask:
-	opt:
+	_:
 		> You have chosen Option A.
 		> You have chosen Option A (again)!
 ---
 (source_file
 	(stmt_ask)
-	(stmt_option)
+	(option
+		(default)
+	)
 	(stmt_say
 		(string_rich)
 	)
@@ -38,14 +45,14 @@ ask:
 stmt_ask.txt :: Two options
 ==================
 ask:
-	opt 0:
+	0:
 		> You have chosen Option A.
-	opt 1:
+	1:
 		> You have chosen Option B!
 ---
 (source_file
 	(stmt_ask)
-	(stmt_option
+	(option
 		(expression
 			(number)
 		)
@@ -53,7 +60,7 @@ ask:
 	(stmt_say
 		(string_rich)
 	)
-	(stmt_option
+	(option
 		(expression
 			(number)
 		)
@@ -66,28 +73,19 @@ ask:
 
 
 ==================
-stmt_ask.txt :: rich dialog options
+stmt_ask.txt :: rich dialog option
 ==================
 ask:
-	opt > Option A
+	> Something
 	:
 		> You have chosen Option A.
-
-	opt > Option B
-	:
-		> You have chosen Option B!
 ---
 (source_file
 	(stmt_ask)
-	(stmt_option
-		(string_rich)
-	)
 	(stmt_say
 		(string_rich)
 	)
-	(stmt_option
-		(string_rich)
-	)
+	(option)
 	(stmt_say
 		(string_rich)
 	)
@@ -98,59 +96,72 @@ ask:
 stmt_ask.txt :: nested askes
 ==================
 ask:
-	opt > Option A
+	> Option A
 	:
 		ask:
-			opt > Option A1
+			> Option A1
 			:
 				> You have chosen Option A1.
-			opt > Option A2
+			> Option A2
 			:
 				> You have chosen Option A2.
-
-	opt > Option B
+	> Option B
 	:
 		ask:
-			opt > Option B1
+			> Option B1
 			:
 				> You have chosen Option B1.
-			opt > Option B2
+			> Option B2
 			:
 				> You have chosen Option B2.
-
 ---
 (source_file
 	(stmt_ask)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_ask)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_say
-		(string_rich)
-	)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_say
-		(string_rich)
-	)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_ask)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_say
-		(string_rich)
-	)
-	(stmt_option
-		(string_rich)
-	)
-	(stmt_say
-		(string_rich)
-	)
+		(stmt_say
+			(string_rich)
+		)
+		(option)
+
+			(stmt_ask)
+				(stmt_say
+					(string_rich)
+				)
+				(option)
+
+					(stmt_say
+						(string_rich)
+					)
+
+				(stmt_say
+					(string_rich)
+				)
+				(option)
+
+					(stmt_say
+						(string_rich)
+					)
+
+		(stmt_say
+			(string_rich)
+		)
+		(option)
+
+			(stmt_ask)
+				(stmt_say
+					(string_rich)
+				)
+				(option)
+
+					(stmt_say
+						(string_rich)
+					)
+
+				(stmt_say
+					(string_rich)
+				)
+				(option)
+
+					(stmt_say
+						(string_rich)
+					)
 )

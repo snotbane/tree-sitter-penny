@@ -103,6 +103,9 @@ label 123
 ---
 (source_file
 	(ERROR)
+	(expression
+		(number)
+	)
 )
 
 
@@ -114,7 +117,9 @@ jump start
 (source_file
 	(stmt_jump
 		(expression
-			(path)
+			(path
+				(identifier)
+			)
 		)
 	)
 )
@@ -128,7 +133,9 @@ call start
 (source_file
 	(stmt_call
 		(expression
-			(path)
+			(path
+				(identifier)
+			)
 		)
 	)
 )

@@ -3,18 +3,19 @@
 stmt_match.txt :: match default only
 ==================
 match x:
-	opt _:
+	_:
 		pass
 ---
 (source_file
 	(stmt_match
 		(expression
-			(path)
+			(path
+				(identifier)
+			)
 		)
 	)
-	(stmt_option
+	(option
 		(default)
 	)
 	(stmt_pass)
-
 )

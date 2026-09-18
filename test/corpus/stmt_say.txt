@@ -16,7 +16,9 @@ rubin >
 ---
 (source_file
 	(stmt_say
-		(path)
+		(path
+			(identifier)
+		)
 		(string_rich)
 	)
 )
@@ -116,10 +118,14 @@ Rubin ---
 ------------------
 (source_file
 	(stmt_say
-		(path)
+		(path
+			(identifier)
+		)
 		(string_rich)
 	)
 	(stmt_shut
-		(path)
+		(path
+			(identifier)
+		)
 	)
 )
