@@ -398,12 +398,8 @@
               ]
             },
             {
-              "type": "FIELD",
-              "name": "tail",
-              "content": {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
+              "type": "SYMBOL",
+              "name": "identifier"
             }
           ]
         },
@@ -422,12 +418,8 @@
                 "value": "."
               },
               {
-                "type": "FIELD",
-                "name": "tail",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                }
+                "type": "SYMBOL",
+                "name": "identifier"
               }
             ]
           }

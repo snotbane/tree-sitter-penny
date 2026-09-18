@@ -151,17 +151,16 @@
   {
     "type": "path",
     "named": true,
-    "fields": {
-      "tail": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {

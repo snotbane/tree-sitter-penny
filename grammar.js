@@ -93,11 +93,8 @@ export default grammar({
 
 		_path_component: ($) =>
 			choice(
-				seq(optional("."), field("tail", $.identifier)),
-				prec(
-					2,
-					seq($._path_component, ".", field("tail", $.identifier)),
-				),
+				seq(optional("."), $.identifier),
+				prec(2, seq($._path_component, ".", $.identifier)),
 			),
 
 		identifier: ($) => /[a-z_][a-z_0-9]*/i,
