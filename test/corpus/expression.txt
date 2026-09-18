@@ -1,0 +1,36 @@
+
+
+==================
+expression.txt :: x == y
+==================
+x == y
+------------------
+(source_file
+	(expression
+		(path
+			(identifier)
+		)
+		(op)
+		(path
+			(identifier)
+		)
+	)
+)
+
+
+==================
+expression.txt :: x != y
+==================
+x != y
+------------------
+(source_file
+	(expression
+		(path
+			(identifier)
+		)
+		(op)
+		(path
+			(identifier)
+		)
+	)
+)

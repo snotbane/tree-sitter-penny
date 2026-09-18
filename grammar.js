@@ -129,7 +129,7 @@ export default grammar({
 				$.expression,
 			),
 
-		op: ($) => choice("and", "or", "new", "is", /[\+\-\*\/\|&<>]/),
+		op: ($) => choice("and", "or", "new", "is", /[\+\-\*\/\|&<>]/, /[=!]=/),
 
 		assignment: ($) => /[\+\-\*\/%?]?=/,
 
