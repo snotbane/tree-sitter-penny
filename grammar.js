@@ -89,13 +89,14 @@ export default grammar({
 
 		filter: ($) => seq($.string_raw, "->", $.string_raw),
 
-		path: ($) =>
-			prec.right(
-				2,
-				seq(
-					optional("."),
-					$.identifier,
-					repeat(seq(".", $.identifier)),
+		path: ($) => $._path_component,
+
+		_path_component: ($) =>
+			choice(
+				seq(optional("."), field("tail", $.identifier)),
+				prec(
+					2,
+					seq($._path_component, ".", field("tail", $.identifier)),
 				),
 			),
 
