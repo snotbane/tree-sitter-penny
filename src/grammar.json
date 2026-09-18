@@ -310,20 +310,12 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": ">\\s*"
+              "type": "STRING",
+              "value": ">"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_string_rich_implicit"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_string_rich_implicit"
             }
           ]
         },

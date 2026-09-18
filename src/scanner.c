@@ -104,7 +104,7 @@ static bool scan_whitespace(Scanner *s, TSLexer *lexer) {
 // whatever column '>' itself happens to sit at.
 static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
   int32_t base_indent = s->current_line_indent;
-  bool consumed_any = false;
+  bool consumed_any = true;
 
   while (true) {
     while (!lexer->eof(lexer) && !lookahead_is_newline(lexer)) {
@@ -153,12 +153,12 @@ bool tree_sitter_penny_external_scanner_scan(void *payload, TSLexer *lexer,
     s->current_line_indent = 0;
   }
 
-  if (valid_symbols[_WHITESPACE] && scan_whitespace(s, lexer)) {
-    return true;
-  }
-
   if (valid_symbols[_STRING_RICH_IMPLICIT]) {
     return scan_multiline_string(s, lexer);
+  }
+
+  if (valid_symbols[_WHITESPACE] && scan_whitespace(s, lexer)) {
+    return true;
   }
 
   return false;

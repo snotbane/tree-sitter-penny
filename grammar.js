@@ -83,7 +83,7 @@ export default grammar({
 
 		string_rich: ($) =>
 			choice(
-				seq(/>\s*/, optional($._string_rich_implicit)),
+				seq(">", $._string_rich_implicit),
 				seq("`", repeat(choice($.escape_sequence, /[^`]/)), "`"),
 			),
 

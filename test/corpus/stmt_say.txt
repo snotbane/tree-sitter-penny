@@ -129,3 +129,19 @@ Rubin ---
 		)
 	)
 )
+
+
+==================
+stmt_say.txt :: Two empty dialogs
+==================
+>
+>
+------------------
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+	(stmt_say
+		(string_rich)
+	)
+)
