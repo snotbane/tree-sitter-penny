@@ -1,7 +1,7 @@
 
 
 ==================
-ask.txt :: single option
+stmt_ask.txt :: single option
 ==================
 ask:
 	opt:
@@ -15,7 +15,7 @@ ask:
 
 
 ==================
-ask.txt :: One option, multiple statements
+stmt_ask.txt :: One option, multiple statements
 ==================
 ask:
 	opt:
@@ -35,7 +35,7 @@ ask:
 
 
 ==================
-ask.txt :: Two options
+stmt_ask.txt :: Two options
 ==================
 ask:
 	opt 0:
@@ -66,7 +66,7 @@ ask:
 
 
 ==================
-ask.txt :: rich dialog options
+stmt_ask.txt :: rich dialog options
 ==================
 ask:
 	opt > Option A
@@ -95,7 +95,7 @@ ask:
 
 
 ==================
-ask.txt :: nested askes
+stmt_ask.txt :: nested askes
 ==================
 ask:
 	opt > Option A

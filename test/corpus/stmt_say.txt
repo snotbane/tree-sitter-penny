@@ -1,5 +1,5 @@
 ==================
-string_rich.txt :: Empty rich dialog statement
+stmt_say.txt :: Empty rich dialog statement
 ==================
 >
 ---
@@ -10,7 +10,7 @@ string_rich.txt :: Empty rich dialog statement
 )
 
 ==================
-string_rich.txt :: Empty rich dialog statement with identifier
+stmt_say.txt :: Empty rich dialog statement with identifier
 ==================
 rubin >
 ---
@@ -22,7 +22,7 @@ rubin >
 )
 
 ==================
-string_rich.txt :: Single line
+stmt_say.txt :: Single line
 ==================
 >	Hello
 ---
@@ -34,7 +34,7 @@ string_rich.txt :: Single line
 
 
 ==================
-string_rich.txt :: Single line after break
+stmt_say.txt :: Single line after break
 ==================
 >
 	Hello
@@ -47,7 +47,7 @@ string_rich.txt :: Single line after break
 
 
 ==================
-string_rich.txt :: Multi line after break
+stmt_say.txt :: Multi line after break
 ==================
 >	Hello
 
@@ -61,7 +61,7 @@ string_rich.txt :: Multi line after break
 
 
 ==================
-string_rich.txt :: Full translation
+stmt_say.txt :: Full translation
 ==================
 >
 	{en}
@@ -81,7 +81,7 @@ string_rich.txt :: Full translation
 
 
 ==================
-string_rich.txt :: Dialog followed by other statement
+stmt_say.txt :: Dialog followed by other statement
 ==================
 >	Hello
 pass
@@ -95,7 +95,7 @@ pass
 
 
 ==================
-string_rich.txt :: Close
+stmt_say.txt :: Close
 ==================
 >	Hello
 ---
@@ -109,7 +109,7 @@ string_rich.txt :: Close
 
 
 ==================
-string_rich.txt :: Close with specific path
+stmt_say.txt :: Close with specific path
 ==================
 Rubin >	Hello
 Rubin ---

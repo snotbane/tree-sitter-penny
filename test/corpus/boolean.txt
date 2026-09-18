@@ -6,7 +6,9 @@ boolean.txt :: true
 true
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 ==================
@@ -15,7 +17,9 @@ boolean.txt :: True
 True
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 ==================
@@ -24,7 +28,9 @@ boolean.txt :: TRUE
 TRUE
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 
@@ -34,7 +40,9 @@ boolean.txt :: false
 false
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 ==================
@@ -43,7 +51,9 @@ boolean.txt :: False
 False
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 ==================
@@ -52,7 +62,9 @@ boolean.txt :: FALSE
 FALSE
 ---
 (source_file
-	(boolean)
+	(expression
+		(boolean)
+	)
 )
 
 
@@ -62,7 +74,9 @@ boolean.txt :: null
 null
 ---
 (source_file
-	(null)
+	(expression
+		(null)
+	)
 )
 
 
@@ -72,7 +86,9 @@ boolean.txt :: Null
 Null
 ---
 (source_file
-	(null)
+	(expression
+		(null)
+	)
 )
 
 
@@ -82,5 +98,7 @@ boolean.txt :: null
 NULL
 ---
 (source_file
-	(null)
+	(expression
+		(null)
+	)
 )

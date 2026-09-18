@@ -1,50 +1,76 @@
 ==================
-Single-character identifier
+path.txt :: Single-character identifier
 ==================
 x
 ---
 (source_file
-	(path)
+	(expression
+		(path
+			(identifier)
+		)
+	)
 )
 
 
 ==================
-Single-word identifier
+path.txt :: Single-word identifier
 ==================
 avalon009
 ---
 (source_file
-	(path)
+	(expression
+		(path
+			(identifier)
+		)
+	)
 )
 
 
 ==================
-Multi-identifier absolute path
+path.txt :: Multi-identifier absolute path
 ==================
 character.name
 ---
 (source_file
-	(path)
+	(expression
+		(path
+			(identifier)
+			(identifier)
+		)
+	)
 )
 
 
 ==================
-Multi-identifier relative path
+path.txt :: Multi-identifier relative path
 ==================
 .character.name
 ---
 (source_file
-	(path)
+	(expression
+		(path
+			(identifier)
+			(identifier)
+		)
+	)
 )
 
 
 ==================
-Two paths on separate lines
+path.txt :: Two paths on separate lines
 ==================
 Rubin
-	.name
+Esther
 ---
 (source_file
-	(path)
-	(path)
+	(expression
+		(path
+			(identifier)
+		)
+	)
+	(expression
+		(path
+			(identifier)
+		)
+	)
 )

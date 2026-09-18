@@ -1,6 +1,6 @@
 
 ==================
-match.txt :: match default only
+stmt_match.txt :: match default only
 ==================
 match x:
 	opt _:

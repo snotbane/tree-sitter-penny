@@ -4,7 +4,9 @@ number.txt :: Zero Integer
 0
 ---
 (source_file
-	(number)
+	(expression
+		(number)
+	)
 )
 
 ==================
@@ -13,7 +15,9 @@ number.txt :: Zero Float
 0.0
 ---
 (source_file
-	(number)
+	(expression
+		(number)
+	)
 )
 
 
@@ -23,5 +27,7 @@ number.txt :: Half Float
 .5
 ---
 (source_file
-	(number)
+	(expression
+		(number)
+	)
 )

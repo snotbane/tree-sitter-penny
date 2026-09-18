@@ -6,7 +6,9 @@ array.txt :: empty array
 []
 ---
 (source_file
-	(array)
+	(expression
+		(array)
+	)
 )
 
 
@@ -16,9 +18,11 @@ array.txt :: array with single value (single line)
 [ 0 ]
 ---
 (source_file
-	(array
-		(expression
-			(number)
+	(expression
+		(array
+			(expression
+				(number)
+			)
 		)
 	)
 )
@@ -29,15 +33,19 @@ array.txt :: array with multiple values (single line)
 [ 0, "asdf", something ]
 ---
 (source_file
-	(array
-		(expression
-			(number)
-		)
-		(expression
-			(string_raw)
-		)
-		(expression
-			(path)
+	(expression
+		(array
+			(expression
+				(number)
+			)
+			(expression
+				(string_raw)
+			)
+			(expression
+				(path
+					(identifier)
+				)
+			)
 		)
 	)
 )
@@ -53,15 +61,19 @@ array.txt :: array with multiple values (multi line)
 ]
 ---
 (source_file
-	(array
-		(expression
-			(number)
-		)
-		(expression
-			(string_raw)
-		)
-		(expression
-			(path)
+	(expression
+		(array
+			(expression
+				(number)
+			)
+			(expression
+				(string_raw)
+			)
+			(expression
+				(path
+					(identifier)
+				)
+			)
 		)
 	)
 )
@@ -78,15 +90,19 @@ array.txt :: array with multiple values (multi line, trailing comma)
 ]
 ---
 (source_file
-	(array
-		(expression
-			(number)
-		)
-		(expression
-			(string_raw)
-		)
-		(expression
-			(path)
+	(expression
+		(array
+			(expression
+				(number)
+			)
+			(expression
+				(string_raw)
+			)
+			(expression
+				(path
+					(identifier)
+				)
+			)
 		)
 	)
 )

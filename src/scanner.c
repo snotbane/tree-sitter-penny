@@ -8,6 +8,7 @@
 enum TokenType {
   _STRING_RICH_IMPLICIT,
   _WHITESPACE,
+  _NEW_LINE,
 };
 
 typedef struct {
@@ -56,6 +57,7 @@ void tree_sitter_penny_external_scanner_deserialize(void *payload,
 // leading whitespace, since zero-width external tokens aren't allowed.
 static bool scan_whitespace(Scanner *s, TSLexer *lexer) {
   bool found_whitespace = false;
+  bool found_newline = false;
 
   while (true) {
     if (lexer->eof(lexer)) {
@@ -71,34 +73,30 @@ static bool scan_whitespace(Scanner *s, TSLexer *lexer) {
       }
       s->current_line_indent = indent;
     }
+
     if (!lookahead_is_whitespace(lexer)) {
       break;
     }
 
     found_whitespace = true;
+
+    if (lexer->lookahead == '\n') {
+      found_newline = true;
+    }
+
     lexer->advance(lexer, false);
   }
 
   if (found_whitespace) {
     lexer->mark_end(lexer);
-    lexer->result_symbol = _WHITESPACE;
+    if (found_newline) {
+      lexer->result_symbol = _NEW_LINE;
+    } else {
+      lexer->result_symbol = _WHITESPACE;
+    }
   }
 
   return found_whitespace;
-
-  //   s->current_line_indent =
-  //       indent; // side effect happens regardless of return value
-
-  //   if (indent == 0)
-  //     return false; // nothing to consume, but depth is now recorded
-
-  //   printf("Set current indent to: %d\n", s->current_line_indent);
-  // } else {
-  // }
-
-  // lexer->mark_end(lexer);
-  // lexer->result_symbol = _WHITESPACE;
-  // return true;
 }
 
 // Fires right after '>' is consumed by the grammar. Uses the indent
@@ -145,74 +143,6 @@ static bool scan_multiline_string(Scanner *s, TSLexer *lexer) {
   }
 
   return consumed_any;
-
-  // while (true) {
-  //   if (lexer->eof(lexer)) {
-  //     break;
-  //   }
-
-  //   if (lookahead_is_newline(lexer)) {
-  //     lexer->advance(lexer, false);
-  //     continue;
-  //   }
-
-  //   if (lexer->get_column(lexer) == 0) {
-  //     int32_t indent = 0;
-  //     while (lookahead_is_indent(lexer)) {
-  //       lexer->advance(lexer, false);
-  //       indent++;
-  //     }
-
-  //     if (lookahead_is_newline(lexer)) {
-  //       lexer->advance(lexer, false);
-  //       continue;
-  //     }
-
-  //     if (indent <= base_indent) {
-  //       break;
-  //     }
-  //   }
-
-  //   if (!lookahead_is_whitespace(lexer)) {
-  //     lexer->mark_end(lexer);
-  //     lexer->result_symbol = _STRING_RICH_IMPLICIT;
-  //   }
-
-  //   lexer->advance(lexer, false);
-  // }
-
-  // bool consumed_any = false;
-  // // bool checking_indent = false;
-
-  // for (;;) {
-  //   while (!lexer->eof(lexer) && lexer->lookahead != '\n') {
-  //     lexer->advance(lexer, false);
-  //     consumed_any = true;
-  //   }
-
-  //   lexer->mark_end(lexer);
-  //   lexer->result_symbol = _STRING_RICH_IMPLICIT;
-
-  //   if (lexer->eof(lexer))
-  //     return consumed_any;
-
-  //   while (lexer->lookahead == '\n')
-  //     lexer->advance(lexer, false); // consume '\n+'
-
-  //   int32_t indent = 0;
-  //   while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
-  //     lexer->advance(lexer, false);
-  //     indent++;
-  //   }
-
-  //   if (lexer->lookahead == '\n' || lexer->eof(lexer))
-  //     return consumed_any;
-  //   if (indent <= base_indent)
-  //     return consumed_any;
-
-  //   consumed_any = true;
-  // }
-  // return consumed_any;
 }
 
 bool tree_sitter_penny_external_scanner_scan(void *payload, TSLexer *lexer,
