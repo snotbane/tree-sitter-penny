@@ -145,3 +145,30 @@ stmt_say.txt :: Two empty dialogs
 		(string_rich)
 	)
 )
+
+
+==================
+stmt_say.txt :: Additive dialog
+==================
++> Hello
+------------------
+(source_file
+	(stmt_say
+		(string_rich)
+	)
+)
+
+
+==================
+stmt_say.txt :: Additive dialog with path
+==================
+Rubin + > Hello
+------------------
+(source_file
+	(stmt_say
+		(path
+			(identifier)
+		)
+		(string_rich)
+	)
+)

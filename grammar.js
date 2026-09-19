@@ -177,8 +177,6 @@ export default grammar({
 
 		stmt_call: ($) => seq("call", $.expression),
 
-		stmt_delay: ($) => seq("delay", $.expression),
-
 		stmt_elif: ($) => seq("elif", $._limited_expression),
 
 		stmt_else: ($) => "else",
@@ -191,8 +189,6 @@ export default grammar({
 
 		stmt_label: ($) => seq("label", $.identifier),
 
-		stmt_option: ($) => seq("opt", optional($.expression)),
-
 		stmt_match: ($) => seq("match", $.expression),
 
 		stmt_pass: ($) => "pass",
@@ -201,7 +197,8 @@ export default grammar({
 
 		stmt_return: ($) => seq("return", optional($.expression)),
 
-		stmt_say: ($) => prec(20, seq(optional($.path), $.string_rich)),
+		stmt_say: ($) =>
+			prec(20, seq(optional($.path), optional("+"), $.string_rich)),
 
 		stmt_shut: ($) => seq(optional($.path), /-+/),
 
