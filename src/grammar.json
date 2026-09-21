@@ -419,9 +419,18 @@
       ]
     },
     "identifier": {
-      "type": "PATTERN",
-      "value": "[a-z_][a-z_0-9]*",
-      "flags": "i"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "~"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-z_][a-z_0-9]*",
+          "flags": "i"
+        }
+      ]
     },
     "array": {
       "type": "SEQ",

@@ -90,3 +90,18 @@ path.path.path
 		)
 	)
 )
+
+
+
+==================
+path.txt :: Narrator path
+==================
+~
+---
+(source_file
+	(expression
+		(path
+			(identifier)
+		)
+	)
+)

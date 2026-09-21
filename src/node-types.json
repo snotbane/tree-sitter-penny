@@ -120,6 +120,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "number",
     "named": true,
     "fields": {}
@@ -619,10 +624,6 @@
     "named": false
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "if",
     "named": false
   },
@@ -688,6 +689,10 @@
   },
   {
     "type": "when",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]

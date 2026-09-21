@@ -97,7 +97,7 @@ export default grammar({
 				prec(2, seq($._path_component, ".", $.identifier)),
 			),
 
-		identifier: ($) => /[a-z_][a-z_0-9]*/i,
+		identifier: ($) => choice("~", /[a-z_][a-z_0-9]*/i),
 
 		array: ($) =>
 			seq(
