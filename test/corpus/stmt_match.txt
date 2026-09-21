@@ -19,3 +19,34 @@ match x:
 	)
 	(stmt_pass)
 )
+
+
+==================
+stmt_match.txt :: Option with when keyword
+==================
+match x:
+	0 when y == 0:
+		pass
+---
+(source_file
+	(stmt_match
+		(expression
+			(path
+				(identifier)
+			)
+		)
+	)
+	(option
+		(expression
+			(number)
+		)
+		(expression
+			(path
+				(identifier)
+			)
+			(op)
+			(number)
+		)
+	)
+	(stmt_pass)
+)

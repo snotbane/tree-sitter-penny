@@ -161,7 +161,12 @@ export default grammar({
 			),
 
 		// Using an optional here is not good, but necessary when creating ask statements with rich dialogs. Those tests are no good either. MASSIVE bandage.
-		option: ($) => seq(optional(choice($.expression, $.default)), ":"),
+		option: ($) =>
+			seq(
+				optional(choice($.expression, $.default)),
+				optional(seq("when", $._limited_expression)),
+				":",
+			),
 
 		stmt_ask: ($) => seq(optional($.path), "ask"),
 
