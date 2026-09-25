@@ -245,16 +245,6 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "#[a-f0-9]{3}",
-          "flags": "i"
-        },
-        {
-          "type": "PATTERN",
-          "value": "#[a-f0-9]{4}",
-          "flags": "i"
-        },
-        {
-          "type": "PATTERN",
           "value": "#[a-f0-9]{6}",
           "flags": "i"
         },
