@@ -20,6 +20,11 @@
     "fields": {}
   },
   {
+    "type": "color",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true,
@@ -44,6 +49,10 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "color",
           "named": true
         },
         {

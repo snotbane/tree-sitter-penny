@@ -37,6 +37,7 @@ export default grammar({
 						$.null,
 						$.boolean,
 						$.number,
+						$.color,
 						$.string_raw,
 						$.filter,
 						$.path,
@@ -56,6 +57,7 @@ export default grammar({
 						$.null,
 						$.boolean,
 						$.number,
+						$.color,
 						$.string_raw,
 						$.filter,
 						$.path,
@@ -72,6 +74,14 @@ export default grammar({
 		boolean: ($) => choice(/[Tt]rue|TRUE/, /[Ff]alse|FALSE/),
 
 		number: ($) => choice(/\d+/, /\d+\.\d+/, /\.\d+/),
+
+		color: ($) =>
+			choice(
+				/#[a-f0-9]{3}/i,
+				/#[a-f0-9]{4}/i,
+				/#[a-f0-9]{6}/i,
+				/#[a-f0-9]{8}/i,
+			),
 
 		escape_sequence: ($) => prec(10, /\\./),
 

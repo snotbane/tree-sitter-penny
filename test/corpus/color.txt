@@ -1,0 +1,53 @@
+
+==================
+color.txt :: 3-digit color
+==================
+
+#abc
+
+---
+(source_file
+	(expression
+		(color)
+	)
+)
+
+==================
+color.txt :: 4-digit color
+==================
+
+#abc8
+
+---
+(source_file
+	(expression
+		(color)
+	)
+)
+
+==================
+color.txt :: 6-digit color
+==================
+
+#ff00ff
+
+---
+(source_file
+	(expression
+		(color)
+	)
+)
+
+
+==================
+color.txt :: 8-digit color
+==================
+
+#ff00ff8a
+
+---
+(source_file
+	(expression
+		(color)
+	)
+)

@@ -99,6 +99,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "color"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "string_raw"
               },
               {
@@ -166,6 +170,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "color"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "string_raw"
               },
               {
@@ -229,6 +237,31 @@
         {
           "type": "PATTERN",
           "value": "\\.\\d+"
+        }
+      ]
+    },
+    "color": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "#[a-f0-9]{3}",
+          "flags": "i"
+        },
+        {
+          "type": "PATTERN",
+          "value": "#[a-f0-9]{4}",
+          "flags": "i"
+        },
+        {
+          "type": "PATTERN",
+          "value": "#[a-f0-9]{6}",
+          "flags": "i"
+        },
+        {
+          "type": "PATTERN",
+          "value": "#[a-f0-9]{8}",
+          "flags": "i"
         }
       ]
     },
